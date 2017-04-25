@@ -30,7 +30,32 @@ class ViewMain extends Component {
         {id: 2, task: 'Adoptar un hipopótamo'}
       ]
     };
-  
+
+    /* Hay que bindear el this en el constructor para que no se vuelva tarumba
+    con los eventos
+    + info: http://www.etnassoft.com/2016/06/27/el-metodo-bind-en-javascript-teoria-ejemplos-y-usos-extremos/ */
+    this.setTitle = this.setTitle.bind(this);
+    this.handleDeleteTask = this.handleDeleteTask.bind(this);
+  }
+
+  setTitle() {
+    /* Para cambiar el valor de un elemento del estado
+      y que React se entere hay que utilizar el método this.setState() */
+      this.setState({mainTitle: 'Título cambiado!'});
+  }
+
+
+  handleDeleteTask(_id_) {
+    let arrayTemp = this.state.todos.slice();
+    let len       = arrayTemp.length;
+
+    while (len--) {
+      if ( arrayTemp[len].id === _id_ ) {
+        arrayTemp.splice(len, 1);
+      }
+    }
+    this.setState({todos: arrayTemp});
+
   }
 
   /* Esto se podría -y debería- hacer directamente en el render, lo saco fuera para que veamos
@@ -44,8 +69,15 @@ class ViewMain extends Component {
    */
   renderTodos() {
     // ver notas adicionales sobre el uso de map
+    // sobre la manera de pasar la función,  ver: 
+    // http://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
     const listTodos = this.state.todos.map((item) =>
-      <li key={item.id}>{item.task}</li>
+      <li key={item.id}>{item.task} 
+        <span 
+          className="taskDone"        
+         onClick={ ()=> {this.handleDeleteTask(item.id)} }
+        >x - done</span>
+      </li>
     );
     return (
       <ul>{listTodos}</ul>
@@ -63,12 +95,13 @@ class ViewMain extends Component {
         {this.state.todos.length &&
           <p>Hey, faltan cosas por hacer</p>
         }
-        {/* Otra forma con el ternario */}
-        {!this.state.todos.length ? (
-          <p>Muy bien, todo hecho</p>
-        ) : (
-          <p>Hey, faltan cosas por hacer</p>
-        )}        
+        <p>
+          {/* Ojo, no se invoca, sino que se referencia, lo que hacemos
+          es pasarle la función al método onClick, si lo pasáramos así:
+          this.setTitle()
+          se ejecutaría */}
+          <button onClick={this.setTitle}>Cambiar titular</button>
+        </p>      
       </article>
     );
   }
