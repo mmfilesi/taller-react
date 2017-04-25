@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import CounterTodos from './counter-todos';
+import LifeCycle from './life-cycle';
 
 class ViewMain extends Component {
   /* Añadimos un constructor */
@@ -93,7 +94,9 @@ class ViewMain extends Component {
           <button onClick={this.setTitle}>Cambiar titular</button>
         </p>
         {/* Insertamos el subcomponente y le pasamos por props el listado de tareas */}
-        <CounterTodos tasks={this.state.todos} delete={this.handleDeleteAll} />      
+        <CounterTodos tasks={this.state.todos} delete={this.handleDeleteAll} />  
+        {/* Ciclo de vida */}
+        <LifeCycle />    
       </article>
     );
   }

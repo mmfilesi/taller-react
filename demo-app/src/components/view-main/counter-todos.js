@@ -33,8 +33,8 @@ class CounterTodos extends Component {
 
 /* Es buena práctica utilizar PropTypes para tipar las propiedades */
 CounterTodos.propTypes = {
-  tasks: PropTypes.array.required,
-  delete: PropTypes.func.required
+  tasks: PropTypes.array,
+  delete: PropTypes.func
 };
 
 export default CounterTodos;
