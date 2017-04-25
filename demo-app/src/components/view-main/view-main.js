@@ -1,20 +1,6 @@
-/*
-  Cuando el componente tiene lógica, lo convertimos en una clase
-  para gestionar métodos y datos, estos últimos en el "estado" */
-
-/* import React from 'react';
-
-const ViewMain = () => {
-  return (
-    <article className="view-main">Aquí irá el tinglado</article>
-  )
-}
-
-export default ViewMain;
-*/
-
-
 import React, { Component } from 'react';
+
+import CounterTodos from './counter-todos';
 
 class ViewMain extends Component {
   /* Añadimos un constructor */
@@ -36,6 +22,7 @@ class ViewMain extends Component {
     + info: http://www.etnassoft.com/2016/06/27/el-metodo-bind-en-javascript-teoria-ejemplos-y-usos-extremos/ */
     this.setTitle = this.setTitle.bind(this);
     this.handleDeleteTask = this.handleDeleteTask.bind(this);
+    this.handleDeleteAll = this.handleDeleteAll.bind(this);
   }
 
   setTitle() {
@@ -55,7 +42,10 @@ class ViewMain extends Component {
       }
     }
     this.setState({todos: arrayTemp});
+  }
 
+  handleDeleteAll() {
+     this.setState({todos: []});
   }
 
   /* Esto se podría -y debería- hacer directamente en el render, lo saco fuera para que veamos
@@ -101,7 +91,9 @@ class ViewMain extends Component {
           this.setTitle()
           se ejecutaría */}
           <button onClick={this.setTitle}>Cambiar titular</button>
-        </p>      
+        </p>
+        {/* Insertamos el subcomponente y le pasamos por props el listado de tareas */}
+        <CounterTodos tasks={this.state.todos} delete={this.handleDeleteAll} />      
       </article>
     );
   }

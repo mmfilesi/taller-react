@@ -22,3 +22,9 @@
   cursor: pointer;
   margin-left: 0.5em;
 }
+
+.counter-tasks {
+    border: 1px solid blue;
+  margin: 1em;
+  padding: 0.5em;
+}
