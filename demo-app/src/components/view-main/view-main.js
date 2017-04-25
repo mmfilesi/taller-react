@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import CounterTodos from './counter-todos';
 import LifeCycle from './life-cycle';
@@ -96,7 +97,7 @@ class ViewMain extends Component {
         {/* Insertamos el subcomponente y le pasamos por props el listado de tareas */}
         <CounterTodos tasks={this.state.todos} delete={this.handleDeleteAll} />  
         {/* Ciclo de vida */}
-        <LifeCycle />    
+        <LifeCycle /> 
       </article>
     );
   }

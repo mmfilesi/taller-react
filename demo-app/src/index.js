@@ -6,18 +6,24 @@ con el DOM de la web
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import App from './App';
+/* (Antes se utilizaba otra fórmula compatible con navegadores antiguos, ahora el HashRouter).
+Lo importamos después de instalarlo
+yarn add react-router-dom
+ */
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './index.css';
 
-/*
- Con el método render de ReactDom lanzamos el tinglado.
- En el primer parámetro le pasamos el JSX a renderizar,
- en el segundo el nodo del DOM normal en el que debe
- engancharse
- */
+import MainContainer from './containers/main-container';
+import AboutContainer from './containers/about-container';
+
 
 ReactDOM.render(
-  <App />,
+ <HashRouter>
+    <Switch>
+      <Route exact path='/' render={ () => <Redirect to='/main' /> } />
+      <Route path='/main' component={ MainContainer } />
+      <Route path='/about' component={ AboutContainer } />
+    </Switch>
+  </HashRouter>,
   document.getElementById('root')
 );
