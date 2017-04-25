@@ -1,0 +1,17 @@
+.main-header {
+  border: 1px solid purple;
+  margin: 1em;
+  padding: 0.5em;
+}
+
+.main-footer {
+  border: 1px solid green;
+  margin: 1em;
+  padding: 0.5em;
+}
+
+.view-main {
+  border: 1px solid orange;
+  margin: 1em;
+  padding: 0.5em;
+}

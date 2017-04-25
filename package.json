@@ -1,0 +1,11 @@
+{
+  "name": "taller-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mmfilesi/taller-react.git",
+  "author": "mmfilesi <mmfilesi@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "create-react-app": "^1.3.0"
+  }
+}
